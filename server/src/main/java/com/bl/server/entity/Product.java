@@ -3,6 +3,9 @@ package com.bl.server.entity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -23,10 +26,8 @@ public class Product implements Serializable {
     @Column(name = "imageLink", length = 500)
     private String imageLink;
 
-    @ElementCollection
-    @CollectionTable(name = "t_product_tags", joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "tag")
-    private List<String> tags;
+    @Column(name = "tags", length = 1000)
+    private String tags; // Store tags as a comma-separated string
 
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
@@ -69,11 +70,18 @@ public class Product implements Serializable {
     }
 
     public List<String> getTags() {
-        return tags;
+        if (tags == null || tags.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return Arrays.asList(tags.split(",\\s*"));
     }
 
     public void setTags(List<String> tags) {
-        this.tags = tags;
+        if (tags == null || tags.isEmpty()) {
+            this.tags = null;
+        } else {
+            this.tags = String.join(", ", tags);
+        }
     }
 
     public BigDecimal getPrice() {
@@ -84,4 +92,3 @@ public class Product implements Serializable {
         this.price = price;
     }
 }
-

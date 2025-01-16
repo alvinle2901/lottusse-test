@@ -30,7 +30,7 @@ const ProductPage = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch('http://localhost:9696/api/products')
+    fetch('https://lottusse-1-latest.onrender.com/api/products')
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
