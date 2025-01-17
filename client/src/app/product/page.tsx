@@ -1,10 +1,8 @@
 'use client';
 
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { SlidersHorizontal, X } from 'lucide-react';
-
-import { Dialog, Transition, TransitionChild } from '@headlessui/react';
+import { SlidersHorizontal } from 'lucide-react';
 
 import ProductCard from '@/components/product/ProductCard';
 import { Button } from '@/components/ui/button';
@@ -16,7 +14,7 @@ import { filterProductsByPriceRange, getPriceRangeFromProducts } from '@/lib/fil
 
 const ProductPage = () => {
   const [loading, setLoading] = useState(false);
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  // const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [orgProducts, setOrgProducts] = useState<Product[]>([]);
@@ -77,9 +75,9 @@ const ProductPage = () => {
     setTimeout(() => setLoading(false), 500);
   };
 
-  const closeFilters = () => {
-    setMobileFiltersOpen(false);
-  };
+  // const closeFilters = () => {
+  //   setMobileFiltersOpen(false);
+  // };
 
   // Filter products by price range
   const onPriceRangeChange = useCallback(
@@ -103,7 +101,7 @@ const ProductPage = () => {
     <article className="mb-6 lg:mb-12 lg:px-10">
       <Button
         className="fixed bottom-5 left-1/2 z-10 -translate-x-1/2 rounded-full px-4 lg:hidden"
-        onClick={() => setMobileFiltersOpen(true)}
+        onClick={() => {}}
       >
         <span className="flex gap-2 text-md text-white normal-case">
           <SlidersHorizontal height={18} width={18} />
