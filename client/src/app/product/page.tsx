@@ -1,8 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+
+import { SlidersHorizontal, X } from 'lucide-react';
+
+import { Dialog, Transition } from '@headlessui/react';
 
 import ProductCard from '@/components/product/ProductCard';
+import { Button } from '@/components/ui/button';
 import GenericAccordion from '@/components/ui/generic-accordion';
 import Range from '@/components/ui/range';
 
@@ -11,6 +16,7 @@ import { filterProductsByPriceRange, getPriceRangeFromProducts } from '@/lib/fil
 
 const ProductPage = () => {
   const [loading, setLoading] = useState(false);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [orgProducts, setOrgProducts] = useState<Product[]>([]);
@@ -71,25 +77,82 @@ const ProductPage = () => {
     setTimeout(() => setLoading(false), 500);
   };
 
-  // Filter products by price range
-  const onPriceRangeChange = useCallback((value: [number, number]) => {
-    setLoading(true);
+  const closeFilters = () => {
+    setMobileFiltersOpen(false);
+  };
 
-    setPriceRangeValue(value);
-    setProducts(
-      filterProductsByPriceRange(
-        !filteredProducts ? products : filteredProducts,
-        value[0],
-        value[1],
-      ),
-    );
-    setTimeout(() => setLoading(false), 500);
-  }, [products, filteredProducts]);
+  // Filter products by price range
+  const onPriceRangeChange = useCallback(
+    (value: [number, number]) => {
+      setLoading(true);
+
+      setPriceRangeValue(value);
+      setProducts(
+        filterProductsByPriceRange(
+          !filteredProducts ? products : filteredProducts,
+          value[0],
+          value[1],
+        ),
+      );
+      setTimeout(() => setLoading(false), 500);
+    },
+    [products, filteredProducts],
+  );
 
   return (
     <article className="mb-6 lg:mb-12 lg:px-10">
+      <Button
+        className="fixed bottom-5 left-1/2 z-10 -translate-x-1/2 rounded-full px-4 lg:hidden"
+        onClick={() => setMobileFiltersOpen(true)}
+      >
+        <span className="flex gap-2 text-md text-white normal-case">
+          <SlidersHorizontal height={18} width={18} />
+          Filter
+        </span>
+      </Button>
+
       <div className="mt-4 flex">
         {/* Filter bar */}
+        {/* Mobile */}
+        <Transition show={mobileFiltersOpen} as={Fragment}>
+          <Dialog className="fixed z-modal lg:hidden" onClose={closeFilters}>
+            <Transition.Child
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+              className="fixed inset-0 -z-10 w-screen bg-[#0008] transition-opacity duration-400"
+              as="button"
+              onClick={closeFilters}
+            />
+            <Transition.Child
+              enterFrom="translate-x-full"
+              enterTo="translate-x-0"
+              leaveFrom="translate-x-0"
+              leaveTo="translate-x-full"
+              className="fixed right-0 top-0 flex h-screen w-screen max-w-[22rem] flex-col bg-background-primary transition-transform duration-400"
+            >
+              <div className="flex flex-1 flex-col overflow-auto px-6 pb-6">
+                <div className="flex items-center justify-between py-4 text-primary">
+                  <div className="flex gap-4">
+                    <span className="text-md font-semibold uppercase">Filters</span>
+                  </div>
+                  <button onClick={closeFilters}>
+                    <X width={20} height={20} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="sticky bottom-0 flex flex-col gap-6 bg-background-primary p-6 shadow-3xl">
+                <Button className="text-center uppercase" onClick={closeFilters}>
+                  See Results
+                </Button>
+              </div>
+            </Transition.Child>
+          </Dialog>
+        </Transition>
+
+        {/* Desktop */}
         <aside className="hidden lg:block">
           {/* Categories */}
           <div className="flex w-60 shrink-0 flex-col gap-4 text-primary text-[17px] font-semibold mb-4">
