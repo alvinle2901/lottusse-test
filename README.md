@@ -1,6 +1,6 @@
 # Full Stack Application
 
-This is a mobile-friendly full stack application built with Java Spring Boot, Redis, and Docker for the backend, and Next.js with TailwindCSS for the frontend.
+This is a mobile-friendly full stack application built with Java Spring Boot, MySQL, Redis, and Docker for the backend, and Next.js with TailwindCSS for the frontend.
 
 <img src="https://i.ibb.co/bJsvkS2/Screenshot-2025-01-17-141659.png" alt="Sample Image" width="100%">
 
@@ -12,6 +12,7 @@ https://lottusse.vercel.app/
 
 ### Technologies
 - Java Spring Boot
+- MySQL
 - Redis Cloud
 - Docker
 - Deploying on Render
@@ -23,11 +24,20 @@ https://lottusse.vercel.app/
   git clone https://github.com/alvinle2901/lottusse-test.git
   cd lottusse-test/server
   ```
-2. Build the Docker image:
+2. Env configuration
+  ```sh
+  DB_URL=your-database-url
+  DB_USERNAME=your-database-username
+  DB_PASSWORD=your-database-password
+  REDIS_HOST=your-redis-host
+  REDIS_PORT=your-redis-port
+  REDIS_DB_PASSWORD=your-redis-password
+  ```
+3. Build the Docker image:
   ```sh
   docker build -t your-backend-image .
   ```
-3. Run the Docker container:
+4. Run the Docker container:
   ```sh
   docker run -p 8080:8080 your-backend-image
   ```
