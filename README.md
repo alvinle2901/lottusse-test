@@ -15,6 +15,7 @@ https://lottusse.vercel.app/
 - Redis Cloud
 - Docker
 - Deploying on Render
+- BE access: https://lottusse-1-latest.onrender.com
 
 ### Setup
 1. Clone the repository:
