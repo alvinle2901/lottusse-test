@@ -4,7 +4,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 
 import { SlidersHorizontal, X } from 'lucide-react';
 
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition, TransitionChild } from '@headlessui/react';
 
 import ProductCard from '@/components/product/ProductCard';
 import { Button } from '@/components/ui/button';
@@ -114,9 +114,9 @@ const ProductPage = () => {
       <div className="mt-4 flex">
         {/* Filter bar */}
         {/* Mobile */}
-        <Transition show={mobileFiltersOpen} as={Fragment}>
+        {/* <Transition show={mobileFiltersOpen}>
           <Dialog className="fixed z-modal lg:hidden" onClose={closeFilters}>
-            <Transition.Child
+            <TransitionChild
               enterFrom="opacity-0"
               enterTo="opacity-100"
               leaveFrom="opacity-100"
@@ -125,7 +125,7 @@ const ProductPage = () => {
               as="button"
               onClick={closeFilters}
             />
-            <Transition.Child
+            <TransitionChild
               enterFrom="translate-x-full"
               enterTo="translate-x-0"
               leaveFrom="translate-x-0"
@@ -148,9 +148,9 @@ const ProductPage = () => {
                   See Results
                 </Button>
               </div>
-            </Transition.Child>
+            </TransitionChild>
           </Dialog>
-        </Transition>
+        </Transition> */}
 
         {/* Desktop */}
         <aside className="hidden lg:block">
@@ -219,7 +219,7 @@ const ProductPage = () => {
         </aside>
         {/* Products list */}
         <section className="w-full lg:ml-14">
-          <div className={'w-full text-xs text-primary uppercase'}>
+          <div className={'w-full text-xs text-primary uppercase ml-5 lg:ml-0'}>
             All Products ({products.length})
           </div>
           <ul className="mt-4 grid w-full grid-cols-2 gap-x-4 gap-y-8 px-6 lg:mt-6 lg:gap-x-8 lg:gap-y-10 lg:px-0 lg:grid-cols-3">
