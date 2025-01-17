@@ -28,7 +28,7 @@ const ProductPreviewCardPurchasable: React.FC<ProductCardDetailProps> = ({ produ
         />
         <Button
           variant={'outline'}
-          className="relative w-full bg-white uppercase font-semibold text-md opacity-0 transition duration-300 group-hover:opacity-100 group-hover:shadow-md"
+          className="relative w-full bg-white uppercase font-semibold text-sm lg:text-medium opacity-0 transition duration-300 group-hover:opacity-100 group-hover:shadow-md"
           size="lg"
         >
           <span>Add to Cart</span>
@@ -36,7 +36,7 @@ const ProductPreviewCardPurchasable: React.FC<ProductCardDetailProps> = ({ produ
       </div>
 
       <div className="flex flex-col">
-        <div className="line-clamp-2 text-primary text-md font-semibold uppercase lg:text-md">
+        <div className="line-clamp-2 text-primary text-md font-semibold uppercase lg:text-medium">
           {name}
         </div>
         <span

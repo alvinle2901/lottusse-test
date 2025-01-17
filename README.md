@@ -1,8 +1,10 @@
 # Full Stack Application
 
-This is a full stack application built with Java Spring Boot, Redis, and Docker for the backend, and Next.js with TailwindCSS for the frontend.
+This is a mobile-friendly full stack application built with Java Spring Boot, Redis, and Docker for the backend, and Next.js with TailwindCSS for the frontend.
 
 <img src="https://i.ibb.co/bJsvkS2/Screenshot-2025-01-17-141659.png" alt="Sample Image" width="100%">
+
+<img src="https://i.ibb.co/LJCGL2F/Screenshot-20250117-142151-Chrome.jpg" alt="Sample Image" width="30%">
 
 https://lottusse.vercel.app/
 
