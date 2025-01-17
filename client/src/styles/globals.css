@@ -45,6 +45,7 @@
 html,
 body {
   @apply font-body antialiased;
+  overflow-x: hidden;
 }
 
 .font-headings {

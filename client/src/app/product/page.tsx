@@ -14,7 +14,6 @@ import { filterProductsByPriceRange, getPriceRangeFromProducts } from '@/lib/fil
 
 const ProductPage = () => {
   const [loading, setLoading] = useState(false);
-  // const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [orgProducts, setOrgProducts] = useState<Product[]>([]);
@@ -75,10 +74,6 @@ const ProductPage = () => {
     setTimeout(() => setLoading(false), 500);
   };
 
-  // const closeFilters = () => {
-  //   setMobileFiltersOpen(false);
-  // };
-
   // Filter products by price range
   const onPriceRangeChange = useCallback(
     (value: [number, number]) => {
@@ -112,43 +107,6 @@ const ProductPage = () => {
       <div className="mt-4 flex">
         {/* Filter bar */}
         {/* Mobile */}
-        {/* <Transition show={mobileFiltersOpen}>
-          <Dialog className="fixed z-modal lg:hidden" onClose={closeFilters}>
-            <TransitionChild
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-              className="fixed inset-0 -z-10 w-screen bg-[#0008] transition-opacity duration-400"
-              as="button"
-              onClick={closeFilters}
-            />
-            <TransitionChild
-              enterFrom="translate-x-full"
-              enterTo="translate-x-0"
-              leaveFrom="translate-x-0"
-              leaveTo="translate-x-full"
-              className="fixed right-0 top-0 flex h-screen w-screen max-w-[22rem] flex-col bg-background-primary transition-transform duration-400"
-            >
-              <div className="flex flex-1 flex-col overflow-auto px-6 pb-6">
-                <div className="flex items-center justify-between py-4 text-primary">
-                  <div className="flex gap-4">
-                    <span className="text-md font-semibold uppercase">Filters</span>
-                  </div>
-                  <button onClick={closeFilters}>
-                    <X width={20} height={20} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="sticky bottom-0 flex flex-col gap-6 bg-background-primary p-6 shadow-3xl">
-                <Button className="text-center uppercase" onClick={closeFilters}>
-                  See Results
-                </Button>
-              </div>
-            </TransitionChild>
-          </Dialog>
-        </Transition> */}
 
         {/* Desktop */}
         <aside className="hidden lg:block">
